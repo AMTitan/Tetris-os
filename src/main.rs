@@ -9,6 +9,7 @@ use print::*;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     print("Hello, World!".as_ref(), 0xf, (10,5));
+    clear();
     loop {}
 }
 

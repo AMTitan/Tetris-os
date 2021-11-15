@@ -12,3 +12,12 @@ pub fn print(stirng:&[u8], color:u8, pos:(usize, usize)) {
         }
     }
 }
+
+pub fn clear() {
+    let vga_buffer = 0xb8000 as *mut u8;
+    for i in 0..4000 {
+        unsafe {
+            *vga_buffer.offset(i as isize) = 0x0;
+        }
+    }
+}
