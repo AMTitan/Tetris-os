@@ -6,9 +6,14 @@ pub fn print(stirng:&[u8], color:u8, pos:(usize, usize)) {
     let mut offset = (pos.1*BUFFER_WIDTH)+pos.0;
 
     for (i, &byte) in stirng.iter().enumerate() {
-        unsafe {
-            *vga_buffer.offset((i + offset) as isize * 2) = byte;
-            *vga_buffer.offset((i + offset) as isize * 2 + 1) = color;
+        if byte == 10 { // if is \n
+            offset +=BUFFER_WIDTH-((pos.0 + i)%BUFFER_WIDTH);
+        }
+        else {
+            unsafe {
+                *vga_buffer.offset((i + offset) as isize * 2) = byte;
+                *vga_buffer.offset((i + offset) as isize * 2 + 1) = color;
+            }
         }
     }
 }
