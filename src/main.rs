@@ -8,12 +8,13 @@ use print::*;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    print("Hello, \nWorld!".as_ref(), 0xf, (10,5));
+    print("Hello,\nWorld!".as_ref(), 0xf, (0,0));
     loop {}
 }
 
 /// This function is called on panic.
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
+    print(info.payload().downcast_ref::<&str>().unwrap().as_ref(), 0x4, (0,0));
     loop {}
 }

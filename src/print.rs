@@ -7,7 +7,7 @@ pub fn print(stirng:&[u8], color:u8, pos:(usize, usize)) {
 
     for (i, &byte) in stirng.iter().enumerate() {
         if byte == 10 { // if is \n
-            offset +=BUFFER_WIDTH-((pos.0 + i)%BUFFER_WIDTH);
+            offset +=BUFFER_WIDTH-((offset + i)%BUFFER_WIDTH)-1;
         }
         else {
             unsafe {
