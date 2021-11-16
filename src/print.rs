@@ -26,3 +26,7 @@ pub fn clear() {
         }
     }
 }
+
+pub fn get_size() -> (usize, usize) {
+    return (BUFFER_WIDTH, BUFFER_HEIGHT);
+}

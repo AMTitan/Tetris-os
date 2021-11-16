@@ -4,11 +4,15 @@
 use core::panic::PanicInfo;
 
 mod print;
+mod board;
+mod string_format;
 use print::*;
+use string_format::*;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     print("Hello,\nWorld!".as_ref(), 0xf, (0,0));
+    board::board_template();
     loop {}
 }
 
